@@ -8,6 +8,11 @@ module Just
         require 'active_support/i18n'
 
         I18n.load_path += Dir[File.expand_path('../just-datetime-picker/locales/*.yml', __FILE__)]
+        
+        require 'active_admin'
+        require 'inherited_resources'
+        require 'just-datetime-picker/data_access_decorator'
+        
       end
     end
   end
