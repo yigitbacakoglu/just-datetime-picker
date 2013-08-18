@@ -1,7 +1,13 @@
 require 'active_admin'
 
 ::ActiveAdmin::ResourceController::DataAccess.module_eval do
-
+   #fixes pagination error with array parameters.
+  def apply_filtering(chain)
+        params[:q] = clean_search_params(params[:q])
+        @search = chain.metasearch(params[:q])
+        @search.relation
+  end
+  #cleans just-datetime-picker namespace from params
   def clean_search_params(search_params)
     return {} unless search_params.is_a?(Hash)
     search_params = search_params.dup
